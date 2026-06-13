@@ -1,0 +1,4 @@
+interface:
+  display_name: "Code Read"
+  short_description: "Read a repo and write a report."
+  default_prompt: "Use $code-read to analyze this repository and write a Markdown report with Mermaid diagrams and linked code references."
