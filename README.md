@@ -29,6 +29,8 @@ ln -s ../skills .agents/skills
 
 Add shared skills under `skills/`. Each agent-specific path will resolve to the same files.
 
+By default, add new skills through the corresponding agent-specific skills folder for the agent option in use, such as `.codex/skills`, `.kiro/skills`, `.claude/skills`, or `.agents/skills`. In this workspace, those paths are symlinks to the local `skills/` directory, so the skill remains versioned here and shared across agents.
+
 ## Included Skills
 
 - `agents-md`: create, edit, or memorize rules in project-specific `AGENTS.md` files.
