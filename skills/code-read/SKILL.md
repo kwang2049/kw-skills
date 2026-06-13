@@ -1,6 +1,6 @@
 ---
 name: code-read
-description: Read and analyze a code repository, then write a Markdown report that helps someone understand its architecture, workflows, important files, and implementation details. Use when the user asks to understand, map, document, explain, onboard to, or review a repository without changing its behavior, especially when they want Mermaid diagrams, code snippets, and clickable code reference links.
+description: Read and analyze a code repository, then write and save a Markdown report that helps someone understand its architecture, workflows, important files, and implementation details. Use when the user asks to understand, map, document, explain, onboard to, or review a repository without changing its behavior, especially when they want Mermaid diagrams, code snippets, and clickable code reference links. Save the report to a temporary folder by default unless the user specifies another path.
 ---
 
 # Code Read
@@ -20,11 +20,14 @@ Analyze a repository and produce a grounded Markdown report for understanding it
    - Follow main entry points through important modules.
    - Read representative tests to understand expected behavior.
    - Use targeted searches for exported APIs, route handlers, command definitions, schemas, and configuration.
-4. Write the report in Markdown:
+4. Write and save the report in Markdown:
    - Include Mermaid diagrams where they clarify architecture, module relationships, data flow, request flow, state transitions, or build/test flow.
    - Include short code snippets for key patterns, APIs, data models, or algorithms.
    - Add clickable code reference links whenever possible. Prefer links in this form: `[path/to/file.ext](/absolute/path/to/file.ext:line)`.
    - Cite specific files and line numbers for claims about behavior.
+   - Save the report file to a temporary directory by default, using a clear filename such as `/tmp/code-read-<repo-name>.md` or `$TMPDIR/code-read-<repo-name>.md` when `$TMPDIR` is available.
+   - If the user specifies an output path, save the report there instead.
+   - Report the saved file path in the final response.
 5. Validate the report:
    - Re-check referenced paths and line numbers.
    - Mark uncertainty clearly when behavior is inferred rather than directly shown in code.
@@ -92,7 +95,7 @@ Source: [src/example.ts](/abs/path/src/example.ts:12)
 
 ## Guardrails
 
-- Do not edit source files unless the user explicitly asks for documentation to be saved into the repository.
+- Do not edit source files unless the user explicitly asks for documentation to be saved into the repository. The default report location is a temporary folder outside the repository.
 - Do not run tests or build commands unless they help confirm understanding and are safe for the repository.
 - Do not present generated, vendored, or dependency code as first-party architecture.
 - Do not overstate certainty. Label inferred behavior as inference.
