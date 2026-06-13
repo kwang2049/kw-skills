@@ -32,6 +32,7 @@ Add shared skills under `skills/`. Each agent-specific path will resolve to the 
 ## Included Skills
 
 - `agents-md`: create, edit, or memorize rules in project-specific `AGENTS.md` files.
+- `implement`: develop feature ideas through proposal, feedback, approval, and implementation.
 - `session-conclude`: summarize a coding session, check README freshness, commit relevant changes, and optionally push or open a PR.
 
 ## Notes
