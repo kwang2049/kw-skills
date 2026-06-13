@@ -1,4 +1,4 @@
 interface:
   display_name: "Session Conclude"
-  short_description: "Summarize, commit, push or PR."
-  default_prompt: "Use $session-conclude to summarize and commit this session, or add push/pr to finish with a remote update."
+  short_description: "Review README, commit, push or PR."
+  default_prompt: "Use $session-conclude to review README freshness, commit this session, or add push/pr to finish remotely."

@@ -1,6 +1,6 @@
 ---
 name: agents-md
-description: Create or edit an AGENTS.md file for the current workspace following the official AGENTS.md guide at https://agents.md/. Use when the user invokes the skill by itself to create AGENTS.md, or when they provide an accompanying instruction to modify AGENTS.md content, including root or nested files in monorepos.
+description: Create, edit, or memorize instructions in an AGENTS.md file for the current workspace following the official AGENTS.md guide at https://agents.md/. Use when the user invokes the skill by itself to create AGENTS.md, provides an accompanying instruction to modify AGENTS.md content, or includes the keyword "memorize" with instructions/rules that should be added to the corresponding AGENTS.md section if not already present.
 ---
 
 # AGENTS.md
@@ -11,6 +11,7 @@ Default behavior:
 
 - If the user invokes this skill without additional editing instructions, create an `AGENTS.md` file for the current workspace.
 - If the user provides an editing instruction along with the skill invocation, edit the relevant existing `AGENTS.md` file according to that instruction.
+- If the user includes the keyword `memorize` followed by instructions or rules, add those instructions or rules to the corresponding section of the relevant `AGENTS.md` file only when they are not already present.
 - If the requested edit targets a missing `AGENTS.md`, create it and apply the requested guidance.
 
 ## Workflow
@@ -25,6 +26,9 @@ Default behavior:
 3. Create or edit `AGENTS.md` at the current workspace root unless the user specifies another directory.
    - If a root `AGENTS.md` already exists, update it in place and preserve accurate existing guidance.
    - When editing, make the requested change directly while keeping unrelated accurate guidance intact.
+   - When memorizing, place the new instruction under an existing matching section when possible. If the user names a section, use that section. Otherwise infer the best section from the content, such as `Build, Test, and Lint`, `Code Style`, `Testing Instructions`, `Security and Configuration`, `PR and Commit Notes`, or `Agent Notes`.
+   - If no matching section exists during memorize mode, create the most appropriate concise heading and add the rule there.
+   - Do not duplicate existing guidance. Treat a rule as already present when the same instruction is stated exactly or clearly covered by existing wording.
    - In a monorepo, create nested `AGENTS.md` files only when the user asks or when a subproject clearly needs different instructions.
 4. Keep the output standard Markdown. The format has no required fields; choose headings that fit the project.
 5. Validate that the final file is actionable and not just descriptive.

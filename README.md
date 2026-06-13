@@ -12,6 +12,7 @@ skills/          # canonical skills directory
 .kiro/skills     -> ../skills
 .claude/skills   -> ../skills
 .agents/skills   -> ../skills
+AGENTS.md        # repository instructions for coding agents
 ```
 
 ## Usage
@@ -27,6 +28,11 @@ ln -s ../skills .agents/skills
 ```
 
 Add shared skills under `skills/`. Each agent-specific path will resolve to the same files.
+
+## Included Skills
+
+- `agents-md`: create, edit, or memorize rules in project-specific `AGENTS.md` files.
+- `session-conclude`: summarize a coding session, check README freshness, commit relevant changes, and optionally push or open a PR.
 
 ## Notes
 

@@ -1,4 +1,4 @@
 interface:
   display_name: "AGENTS.md Manager"
-  short_description: "Create or edit project-specific AGENTS.md instructions."
-  default_prompt: "Use $agents-md to create an AGENTS.md file for this workspace, or include editing instructions to update an existing AGENTS.md."
+  short_description: "Create, edit, or memorize AGENTS.md rules."
+  default_prompt: "Use $agents-md to create or edit AGENTS.md, or add memorize plus a rule to store it in the right section."
