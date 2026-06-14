@@ -12,11 +12,14 @@ Turn a feature idea into working code through a proposal-first workflow. Do not 
 1. Understand the request and inspect the codebase:
    - Read relevant `README*`, `AGENTS.md`, package manifests, tests, and nearby code.
    - Use `rg --files` and targeted searches to find the affected modules.
+   - Identify the project's primary programming language or the language of the affected area from manifests, file extensions, and nearby code.
    - Ask only for missing information that blocks a coherent proposal.
 2. Present and save an implementation proposal in Markdown:
    - Include the problem statement, goals, non-goals, affected files, data or control flow, implementation steps, risks, and validation plan.
    - Include at least one Mermaid diagram when it clarifies architecture, flow, state, sequence, or dependencies.
    - Include short code snippets or pseudocode for the key API, data model, interface, or algorithm.
+   - Use the project's primary programming language for code snippets by default. If the proposal targets a specific subsystem, use that subsystem's language. Use pseudocode only when no project language is clear.
+   - Use Markdown tables when they make tradeoffs, affected files, data shapes, validation plans, or rollout steps easier to compare.
    - Keep snippets illustrative; do not pretend they are final diffs.
    - Save the proposal to a local file under the current working directory by default, using a clear filename such as `implementation-proposal-<feature>.md`.
    - Treat the keyword `pwd` as an explicit request to save under the current working directory.
@@ -48,7 +51,15 @@ Use this shape unless the project calls for a different one:
 
 ### Goals
 
+| Goal | Why It Matters |
+| --- | --- |
+| Add the new behavior | User-visible outcome |
+
 ### Non-Goals
+
+| Non-Goal | Reason |
+| --- | --- |
+| Rewrite unrelated modules | Keep scope controlled |
 
 ### Current Flow
 
@@ -69,17 +80,30 @@ sequenceDiagram
 
 ### Key Changes
 
+| Area | Change | Files |
+| --- | --- | --- |
+| API | Add the new handler path | `src/example` |
+
 ### Code Sketch
 
-```ts
-type Example = {
-  id: string;
-};
+```<project-language>
+// Use the language of the current project or affected subsystem.
+function example() {
+  return "sketch";
+}
 ```
 
 ### Validation Plan
 
+| Check | Command or Method | Expected Result |
+| --- | --- | --- |
+| Focused test | `<project test command>` | New behavior passes |
+
 ### Risks and Tradeoffs
+
+| Risk | Mitigation |
+| --- | --- |
+| Compatibility issue | Keep behavior behind the approved boundary |
 ````
 
 ## Guardrails
