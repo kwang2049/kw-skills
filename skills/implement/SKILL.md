@@ -1,6 +1,6 @@
 ---
 name: implement
-description: Develop a new idea or feature through an approval-gated implementation workflow. Use when the user asks to implement, build, add, design, or ship a feature and wants an implementation proposal first, including Markdown, Mermaid diagrams, code snippets, user-feedback refinement, and implementation only after explicit approval.
+description: Develop a new idea or feature through an approval-gated implementation workflow. Use when the user asks to implement, build, add, design, or ship a feature and wants an implementation proposal first, including Markdown, Mermaid diagrams, code snippets, user-feedback refinement, and implementation only after explicit approval. Save the design proposal to a local Markdown file under the current working directory by default; support "pwd" to force the current directory and "tmp" to force a temporary directory.
 ---
 
 # Implement
@@ -13,11 +13,16 @@ Turn a feature idea into working code through a proposal-first workflow. Do not 
    - Read relevant `README*`, `AGENTS.md`, package manifests, tests, and nearby code.
    - Use `rg --files` and targeted searches to find the affected modules.
    - Ask only for missing information that blocks a coherent proposal.
-2. Present an implementation proposal in Markdown:
+2. Present and save an implementation proposal in Markdown:
    - Include the problem statement, goals, non-goals, affected files, data or control flow, implementation steps, risks, and validation plan.
    - Include at least one Mermaid diagram when it clarifies architecture, flow, state, sequence, or dependencies.
    - Include short code snippets or pseudocode for the key API, data model, interface, or algorithm.
    - Keep snippets illustrative; do not pretend they are final diffs.
+   - Save the proposal to a local file under the current working directory by default, using a clear filename such as `implementation-proposal-<feature>.md`.
+   - Treat the keyword `pwd` as an explicit request to save under the current working directory.
+   - Treat the keyword `tmp` as an explicit request to save under a temporary directory, using `$TMPDIR/implementation-proposal-<feature>.md` when `$TMPDIR` is available or `/tmp/implementation-proposal-<feature>.md` otherwise.
+   - If the user specifies an output path, save the proposal there instead of using `pwd` or `tmp`.
+   - Tell the user the saved proposal path and wait for feedback or approval before implementing.
 3. Refine with user feedback:
    - Incorporate requested changes into a revised proposal.
    - Resolve tradeoffs explicitly when feedback changes scope, risk, migration strategy, or compatibility.
@@ -80,6 +85,7 @@ type Example = {
 ## Guardrails
 
 - Do not edit source files during the proposal phase.
+- Saving the proposal Markdown file is allowed during the proposal phase; product/source implementation edits are not.
 - Do not skip the proposal just because the implementation looks straightforward.
 - Do not run broad, expensive, or destructive commands as part of discovery.
 - Do not over-specify low-level details before reading the relevant code.

@@ -1,4 +1,4 @@
 interface:
   display_name: "Implement"
   short_description: "Propose, refine, then implement."
-  default_prompt: "Use $implement to turn this idea into an implementation proposal, refine it with feedback, then implement after approval."
+  default_prompt: "Use $implement to save an implementation proposal to the current directory, refine it with feedback, then implement after approval."

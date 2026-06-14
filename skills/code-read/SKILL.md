@@ -1,6 +1,6 @@
 ---
 name: code-read
-description: Read and analyze a code repository, then write and save a Markdown report that helps someone understand its architecture, workflows, important files, and implementation details. Use when the user asks to understand, map, document, explain, onboard to, or review a repository without changing its behavior, especially when they want Mermaid diagrams, code snippets, and clickable code reference links. Save the report to a temporary folder by default unless the user specifies another path.
+description: Read and analyze a code repository, then write and save a Markdown report that helps someone understand its architecture, workflows, important files, and implementation details. Use when the user asks to understand, map, document, explain, onboard to, or review a repository without changing its behavior, especially when they want Mermaid diagrams, code snippets, and clickable code reference links. Save the report to the current working directory by default; support "pwd" to force the current directory and "tmp" to force a temporary directory.
 ---
 
 # Code Read
@@ -25,8 +25,10 @@ Analyze a repository and produce a grounded Markdown report for understanding it
    - Include short code snippets for key patterns, APIs, data models, or algorithms.
    - Add clickable code reference links whenever possible. Prefer links in this form: `[path/to/file.ext](/absolute/path/to/file.ext:line)`.
    - Cite specific files and line numbers for claims about behavior.
-   - Save the report file to a temporary directory by default, using a clear filename such as `/tmp/code-read-<repo-name>.md` or `$TMPDIR/code-read-<repo-name>.md` when `$TMPDIR` is available.
-   - If the user specifies an output path, save the report there instead.
+   - Save the report file to the current working directory by default, using a clear filename such as `code-read-<repo-name>.md`.
+   - Treat the keyword `pwd` as an explicit request to save under the current working directory.
+   - Treat the keyword `tmp` as an explicit request to save under a temporary directory, using `$TMPDIR/code-read-<repo-name>.md` when `$TMPDIR` is available or `/tmp/code-read-<repo-name>.md` otherwise.
+   - If the user specifies an output path, save the report there instead of using `pwd` or `tmp`.
    - Report the saved file path in the final response.
 5. Validate the report:
    - Re-check referenced paths and line numbers.
@@ -95,7 +97,7 @@ Source: [src/example.ts](/abs/path/src/example.ts:12)
 
 ## Guardrails
 
-- Do not edit source files unless the user explicitly asks for documentation to be saved into the repository. The default report location is a temporary folder outside the repository.
+- Do not edit source files unless the user explicitly asks for documentation to be saved into the repository. The default report location is the current working directory.
 - Do not run tests or build commands unless they help confirm understanding and are safe for the repository.
 - Do not present generated, vendored, or dependency code as first-party architecture.
 - Do not overstate certainty. Label inferred behavior as inference.
