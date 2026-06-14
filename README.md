@@ -13,6 +13,7 @@ skills/          # canonical skills directory
 .claude/skills   -> ../skills
 .agents/skills   -> ../skills
 AGENTS.md        # repository instructions for coding agents
+work-logs/       # local daily work logs
 ```
 
 ## Usage
@@ -37,6 +38,7 @@ By default, add new skills through the corresponding agent-specific skills folde
 - `code-read`: analyze a code repository and write a Markdown understanding report with diagrams and code references.
 - `implement`: develop feature ideas through proposal, feedback, approval, and implementation.
 - `session-conclude`: summarize a coding session, check README freshness, commit relevant changes, and optionally push or open a PR.
+- `work-logs`: set up dated workspace logs and summarize recent log status.
 
 ## Notes
 

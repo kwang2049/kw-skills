@@ -1,0 +1,4 @@
+interface:
+  display_name: "Work Logs"
+  short_description: "Set up and summarize work logs."
+  default_prompt: "Use $work-logs to set up workspace work logs, or use $work-logs status to summarize recent entries."

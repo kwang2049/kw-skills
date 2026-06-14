@@ -10,6 +10,7 @@ Important paths:
 - `.codex/skills`, `.kiro/skills`, `.claude/skills`, `.agents/skills`: relative symlinks to `../skills`.
 - `skills/<skill-name>/SKILL.md`: primary instructions and metadata for an individual skill.
 - `skills/<skill-name>/agents/`: optional agent-specific metadata, such as `openai.yaml`.
+- `work-logs/`: local daily work logs.
 
 ## Setup and Validation
 
@@ -49,6 +50,11 @@ ls -la .codex .kiro .claude .agents
 
 ## Agent Notes
 
-- `skills/agents-md/` is currently untracked in git. Treat it as user work unless asked to commit or reorganize it.
 - If adding build, lint, or test tooling later, update this file with the exact supported commands.
 - Closest `AGENTS.md` files take precedence for files below their directory. Add nested files only when a subproject needs different instructions.
+
+## Work Logs
+
+- Work logs live under `work-logs/`.
+- Each work log must be named after the date in `YYYY-MM-DD.md` format.
+- Work logs should always be updated right after each task is handled.
